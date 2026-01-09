@@ -17,7 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from .api import TeamViewSet, UserViewSet, ActivityViewSet, WorkoutViewSet, LeaderboardViewSet
+
 from .views import api_root
+import os
+
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
+if CODESPACE_NAME:
+    API_BASE = f'https://{CODESPACE_NAME}-8000.app.github.dev/api/'
+else:
+    API_BASE = '/api/'
+
 
 
 router = routers.DefaultRouter()
